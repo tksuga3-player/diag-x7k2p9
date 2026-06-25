@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恋愛努力の詰まりフェーズ 個別診断</title>
+<meta name="description" content="頑張っているのに恋愛が進まないのは、努力不足ではなく「超えられていないライン」があるからかもしれません。進化心理学ベースの個別診断で、今の詰まりフェーズを明らかにします。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================================================================
+     編集について：
+     - 文章はそのままHTML内のテキストを書き換えてください。
+     - 色を変えたい場合は :root の中の値だけ変えれば全体に反映されます。
+     - 申込リンク・価格・受付人数は、このファイル最下部の <script> 内
+       「CONFIG」だけ編集すれば、ページ内の該当箇所すべてに反映されます。
+     =================================================================== */
+
+  :root{
+    --ink:        #d6006e;   /* 背景：ショッキングピンク（神田昌典氏の書籍・DMを意識） */
+    --ink-soft:   #a8004f;   /* 背景：ピンクの濃い版（カード等） */
+    --paper:      #e9ece8;   /* 背景：紙色（情報セクション） */
+    --paper-soft: #f4f5f2;   /* 背景：紙色の明るい版 */
+    --line:       #5c6b63;   /* 中間グレー：罫線・補助テキスト */
+    --line-soft:  #c7cdc6;   /* 紙面上の薄い罫線 */
+    --gold:       #cf9b3f;   /* アクセント：CTA・強調 */
+    --gold-deep:  #a87a2c;   /* アクセント：ホバー等の濃い版 */
+    --btn-text:   #241208;   /* CTAボタンの文字色（背景色が変わっても固定） */
+    --text-on-ink:   #fbeef4;
+    --text-on-paper: #1b211c;
+
+    --font-display: "Shippori Mincho", serif;
+    --font-body: "Zen Kaku Gothic New", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: var(--font-body);
+    color: var(--text-on-paper);
+    background: var(--paper);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{ max-width:100%; display:block; }
+
+  a{ color: inherit; }
+  a:focus-visible, button:focus-visible{
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section{ padding: 96px 0; }
+  @media (max-width:600px){ section{ padding: 64px 0; } }
+
+  .on-ink{ background: var(--ink); color: var(--text-on-ink); }
+  .on-paper{ background: var(--paper); color: var(--text-on-paper); }
+  .on-paper-soft{ background: var(--paper-soft); color: var(--text-on-paper); }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 18px;
+  }
+
+  h1,h2,h3{
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin: 0 0 0.6em;
+    line-height: 1.5;
+  }
+  h1{ font-size: clamp(28px, 5vw, 42px); font-weight: 800; }
+  h2{ font-size: clamp(22px, 4vw, 30px); }
+  h3{ font-size: 19px; }
+
+  p{ margin: 0 0 1.1em; }
+  .lead{ font-size: 17px; }
+  .muted{ color: var(--line); font-size: 15px; }
+
+  /* ---------- CTAボタン ---------- */
+  .cta-btn{
+    display:inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 18px 36px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--btn-text);
+    transition: background .2s ease, transform .2s ease;
+  }
+  .cta-btn:hover{ background: var(--gold-deep); transform: translateY(-1px); }
+  .cta-wrap{ text-align:center; margin-top: 36px; }
+  .cta-note{
+    display:block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--line);
+    font-family: var(--font-mono);
+  }
+  .on-ink .cta-note{ color:#f6c9de; }
+  .on-ink .muted{ color:#f3bcd7; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: var(--ink);
+    color: var(--text-on-ink);
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+  .hero-graphic{ margin: 0 auto 48px; max-width: 560px; }
+  .hero h1{ text-align:center; }
+  .hero .lead{ text-align:center; max-width: 540px; margin: 0 auto 8px; color:#f9d7e8; }
+
+  .line-label{ font-family: var(--font-mono); font-size: 11px; fill: #ffd9ec; letter-spacing: .08em; opacity: .85; }
+  .line-stroke{ stroke: rgba(255,255,255,.35); stroke-width: 1; stroke-dasharray: 4 5; }
+  .line-marker{ fill: var(--gold); }
+  @media (prefers-reduced-motion: no-preference){
+    .line-marker{ animation: rise 2.6s cubic-bezier(.22,1,.36,1) 0.3s both; }
+  }
+  @keyframes rise{
+    from{ transform: translateY(0); opacity: 0; }
+    to{ transform: translateY(-190px); opacity: 1; }
+  }
+
+  /* ---------- 罫線・区切り ---------- */
+  hr.rule{ border:none; border-top:1px solid var(--line-soft); margin: 40px 0; }
+  .on-ink hr.rule{ border-top:1px solid rgba(255,255,255,.25); }
+
+  /* ---------- リスト類 ---------- */
+  ul.plain{ margin:0 0 1.1em; padding-left: 1.3em; }
+  ul.plain li{ margin-bottom: .5em; }
+
+  /* ---------- フェーズカード ---------- */
+  .phase-card{
+    border-top: 1px solid var(--line-soft);
+    padding: 28px 0;
+  }
+  .phase-card:last-child{ border-bottom: 1px solid var(--line-soft); }
+  .phase-tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--gold-deep);
+    display:block;
+    margin-bottom: 8px;
+  }
+  .phase-card h3{ margin-bottom: 10px; }
+  .phase-card p{ margin:0; color:#3a423c; }
+
+  /* ---------- 2カラム ---------- */
+  .cols{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width:640px){ .cols{ grid-template-columns: 1fr; } }
+  .col-box{
+    background: var(--paper-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 24px 26px;
+  }
+  .col-box h3{ font-family: var(--font-mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color: var(--line); margin-bottom: 16px; }
+
+  /* ---------- 価格セクション ---------- */
+  .price-box{
+    background: var(--ink-soft);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 6px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .price-old{
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: #f0a9c9;
+    text-decoration: line-through;
+    margin-bottom: 6px;
+  }
+  .price-new{
+    font-family: var(--font-display);
+    font-size: clamp(38px, 7vw, 56px);
+    font-weight: 800;
+    color: var(--gold);
+    line-height:1;
+    margin-bottom: 6px;
+  }
+  .price-new small{ font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--text-on-ink); }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{ margin-bottom: 28px; }
+  .faq-q{ font-family: var(--font-mono); font-size: 13px; color: var(--gold-deep); margin-bottom:6px; }
+  .faq-a{ margin:0; }
+
+  /* ---------- フッター ---------- */
+  footer{
+    background: var(--ink);
+    color: #f3bcd7;
+    font-size: 13px;
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  /* ---------- モバイル固定CTA ---------- */
+  .sticky-cta{
+    position: fixed;
+    left:0; right:0; bottom:0;
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,.18);
+    padding: 12px 16px;
+    text-align:center;
+    z-index: 50;
+    transform: translateY(110%);
+    transition: transform .3s ease;
+  }
+  .sticky-cta.is-visible{ transform: translateY(0); }
+  .sticky-cta .cta-btn{ padding: 13px 28px; font-size: 15px; width: 100%; max-width: 320px; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- ① HERO（ヘッドライン） -->
+<!-- ============================================================ -->
+<section class="hero">
+  <div class="wrap">
+
+    <svg class="hero-graphic" viewBox="0 0 560 230" role="img" aria-label="5段階のラインを表す図">
+      <line class="line-stroke" x1="40" y1="200" x2="520" y2="200"/>
+      <text class="line-label" x="40" y="192">LINE 00 — 接触導線</text>
+      <line class="line-stroke" x1="40" y1="160" x2="520" y2="160"/>
+      <text class="line-label" x="40" y="152">LINE 01 — 拒絶ライン</text>
+      <line class="line-stroke" x1="40" y1="120" x2="520" y2="120"/>
+      <text class="line-label" x="40" y="112">LINE 02 — 安全ライン</text>
+      <line class="line-stroke" x1="40" y1="80" x2="520" y2="80"/>
+      <text class="line-label" x="40" y="72">LINE 03 — 候補ライン</text>
+      <line class="line-stroke" x1="40" y1="40" x2="520" y2="40"/>
+      <text class="line-label" x="40" y="32">LINE 04 — 長期伴侶ライン</text>
+      <circle class="line-marker" cx="480" cy="200" r="6"/>
+    </svg>
+
+    <p class="eyebrow" style="text-align:center;">恋愛努力の詰まりフェーズ 個別診断</p>
+    <h1>頑張っているのに進まないのは、<br>努力不足ではありません。<br>超えられていない「ライン」が<br>1つあるだけです。</h1>
+    <p class="lead">あなたの過去の事例から、今どのラインで詰まっているのかを、進化心理学の視点で個別に診断します。</p>
+
+    <div class="cta-wrap">
+      <a class="cta-btn" data-bind="applyUrl" href="#">今の自分の「詰まりフェーズ」を知る</a>
+      <span class="cta-note">価格：<span data-bind="priceCurrent">1,980円</span>（税込）</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ② 共感・問題提起 -->
+<!-- ============================================================ -->
+<section class="on-ink">
+  <div class="wrap">
+    <p class="eyebrow">なぜ努力が届かないのか</p>
+    <h2>同じ「うまくいかない」でも、原因はまったく違います。</h2>
+    <p class="lead">恋愛では、努力の量よりも「どの段階で詰まっているか」が重要です。</p>
+    <p>たとえば、同じ「うまくいかない」でも、</p>
+    <ul class="plain">
+      <li>そもそも女性と接点がない</li>
+      <li>会話の場は作れるが、空気が重くなる</li>
+      <li>会話はできるが、ただのいい人で終わる</li>
+      <li>異性として見られるが、関係が続かない</li>
+      <li>短期的には進むが、長期関係にならない</li>
+    </ul>
+    <p>では、必要な改善策がまったく違います。</p>
+    <p>にもかかわらず、多くの人は自分の詰まりフェーズを見誤ったまま、</p>
+    <p style="color:#f9d7e8;">「もっと優しくしよう」<br>「もっと会話を盛り上げよう」<br>「もっと清潔感を上げよう」<br>「もっと押せばよかったのか」<br>「もっと誠実にすればよかったのか」</p>
+    <p>と、ズレた努力を続けてしまいます。</p>
+    <hr class="rule">
+    <p class="muted">これは、進化心理学の視点で見ると当然のことです。女性が無意識に男性を評価する基準は、長い進化の過程で形成されたものであり、本人の「頑張り方」とは別の軸で動いています。だからこそ、軸がズレた努力は、どれだけ積み重ねても結果に届きません。</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ③ 診断内容 -->
+<!-- ============================================================ -->
+<section class="on-paper-soft">
+  <div class="wrap">
+    <p class="eyebrow">この個別診断でやること</p>
+    <h2>あなたの具体的な事例から、詰まりの場所を特定します。</h2>
+    <p>過去の恋愛・出会い・会話・デートの<strong>具体的な事例</strong>をもとに、今あなたがどのフェーズで詰まっているのかを診断します。</p>
+    <ul class="plain">
+      <li>現在の詰まりフェーズ</li>
+      <li>そのフェーズと判断した理由</li>
+      <li>女性側からどう見えていた可能性が高いか</li>
+      <li>本人が誤解していそうなポイント</li>
+      <li>本当に改善すべき優先順位</li>
+      <li>逆に、今やらなくていい努力</li>
+      <li>7日〜14日で取り組む具体的な改善課題</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ④ フェーズ分類 -->
+<!-- ============================================================ -->
+<section class="on-paper">
+  <div class="wrap">
+    <p class="eyebrow">フェーズ分類</p>
+    <h2>診断で見る、5つのライン</h2>
+
+    <div class="phase-card">
+      <span class="phase-tag">LINE 00</span>
+      <h3>接触導線不足</h3>
+      <p>そもそも女性との新規接点が足りていない状態です。会話力や恋愛テクニック以前に、出会いの母数が不足している可能性があります。</p>
+    </div>
+    <div class="phase-card">
+      <span class="phase-tag">LINE 01</span>
+      <h3>拒絶ライン未満</h3>
+      <p>女性と同じ空間にいること自体が成立しにくい状態です。見た目、清潔感、距離感、挙動、場違い感などで、会話に入る前に拒否されている可能性があります。</p>
+    </div>
+    <div class="phase-card">
+      <span class="phase-tag">LINE 02</span>
+      <h3>安全ライン未満</h3>
+      <p>会話する場は作れているが、相手が安心して会話を続けられる状態になっていない段階です。空気の硬さ、質問攻め、自己開示不足、反応のズレ、圧、緊張感などが見られる可能性があります。</p>
+    </div>
+    <div class="phase-card">
+      <span class="phase-tag">LINE 03</span>
+      <h3>男としての候補ライン未満</h3>
+      <p>会話はできる。悪い人とは思われていない。しかし、異性としての引き、主体性、余裕、リード、身体性、軽い緊張感が足りず、「いい人」「安全な人」で止まっている状態です。</p>
+    </div>
+    <div class="phase-card">
+      <span class="phase-tag">LINE 04</span>
+      <h3>長期伴侶ライン未満</h3>
+      <p>異性として見られることはある。短期的に関係が進むこともある。しかし、信頼、安定感、生活力、誠実さ、将来性、関係継続力の面で、長期関係に進みにくい状態です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ⑤ 向いている人／やらないこと -->
+<!-- ============================================================ -->
+<section class="on-paper-soft">
+  <div class="wrap">
+    <p class="eyebrow">この診断について</p>
+    <div class="cols">
+      <div class="col-box">
+        <h3>こんな人に向いています</h3>
+        <ul class="plain">
+          <li>自分がどこで詰まっているのか分からない</li>
+          <li>恋愛努力の方向性が合っているか知りたい</li>
+          <li>会話はできるのに、恋愛対象にならない</li>
+          <li>いい人止まりが多い</li>
+          <li>デート後にフェードアウトされることが多い</li>
+          <li>同じ失敗を繰り返している</li>
+          <li>一般論ではなく自分のケースで見てほしい</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>この診断でやらないこと</h3>
+        <p>相手を操作する方法や、拒否を無視して押し切る方法を教えるものではありません。また、単なる励ましや精神論でもありません。</p>
+        <p style="margin-bottom:0;">目的は、成人同士の健全な関係構築を前提に、あなたの恋愛行動のどこにズレがあるのかを見つけ、次に何を改善すべきかを明確にすることです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ⑥ 納品内容 -->
+<!-- ============================================================ -->
+<section class="on-paper">
+  <div class="wrap">
+    <p class="eyebrow">納品内容</p>
+    <h2>診断レポートの構成</h2>
+    <p>回答内容をもとに、以下の形式で診断レポートを作成します。</p>
+    <ul class="plain">
+      <li>総合診断</li>
+      <li>現在の詰まりフェーズ</li>
+      <li>フェーズ判定の根拠</li>
+      <li>事例ごとの分析</li>
+      <li>女性側から見た印象仮説</li>
+      <li>本人が誤解していそうなポイント</li>
+      <li>改善優先順位</li>
+      <li>やってはいけない改善努力</li>
+      <li>7日間の改善課題</li>
+      <li>14日間の改善課題</li>
+      <li>次に必要なトレーニング</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ⑦ 価格 -->
+<!-- ============================================================ -->
+<section class="on-ink">
+  <div class="wrap">
+    <p class="eyebrow">価格について</p>
+    <div class="price-box">
+      <p class="price-old">通常価格 <span data-bind="priceFuture">3,980円</span></p>
+      <p class="price-new"><span data-bind="priceCurrent">1,980円</span><small>（税込・先行モニター価格）</small></p>
+      <p class="muted" style="margin:18px auto 0; max-width:440px;">
+        これは「安く見せるための演出」ではありません。診断の精度をさらに高めていくモニター期間中であること、また個別に丁寧に分析するため、対応できる人数に限り（月<span data-bind="monitorSlots">◯</span>名まで）があることが理由です。モニター期間終了後は通常価格に戻ります。
+      </p>
+      <div class="cta-wrap">
+        <a class="cta-btn" data-bind="applyUrl" href="#">今の自分の「詰まりフェーズ」を知る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ⑧ FAQ -->
+<!-- ============================================================ -->
+<section class="on-paper-soft">
+  <div class="wrap">
+    <p class="eyebrow">よくある質問</p>
+    <h2>FAQ</h2>
+
+    <div class="faq-item">
+      <p class="faq-q">Q. 本当に自分のケースに当てはまりますか？</p>
+      <p class="faq-a">一般論ではなく、あなたが実際に体験した出来事をもとに分析するので、一般的な恋愛アドバイスとは異なります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. これは医学的・心理学的な「診断」ですか？</p>
+      <p class="faq-a">いいえ。臨床心理学的な診断や医療行為ではありません。行動科学・進化心理学の知見に基づいた、行動パターンの分析ツールです。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 結果はどれくらいで届きますか？</p>
+      <p class="faq-a">回答完了から、目安として3〜5営業日以内にメールでお送りします。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 個人情報は大丈夫ですか？</p>
+      <p class="faq-a">回答内容は診断の目的以外には使用せず、第三者に開示することもありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ⑨ 最終CTA -->
+<!-- ============================================================ -->
+<section class="on-ink">
+  <div class="wrap" style="text-align:center;">
+    <h2>今、自分がどのラインで止まっているかを知る。</h2>
+    <p class="lead" style="color:#f9d7e8;">それが、次の一歩を正しい場所から始めるための、最初の一手になります。</p>
+    <div class="cta-wrap">
+      <a class="cta-btn" data-bind="applyUrl" href="#">今の自分の「詰まりフェーズ」を知る</a>
+      <span class="cta-note">価格：<span data-bind="priceCurrent">1,980円</span>（税込）</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ⑩ 回答時の注意事項 -->
+<!-- ============================================================ -->
+<section class="on-paper">
+  <div class="wrap">
+    <p class="eyebrow">お申し込み後について</p>
+    <h2>回答時の注意事項</h2>
+    <p>お申し込み・お支払い完了後、回答フォームのご案内をお送りします。診断精度を上げるため、できるだけ具体的に書いてください。特に重要なのは、</p>
+    <ul class="plain">
+      <li>どこで出会ったか</li>
+      <li>何を話したか</li>
+      <li>自分がどう振る舞ったか</li>
+      <li>相手がどう反応したか</li>
+      <li>どのタイミングで空気が変わったか</li>
+      <li>その後どうなったか</li>
+    </ul>
+    <p style="margin-bottom:0;">です。きれいに書く必要はありません。箇条書きでも、時系列メモでも大丈夫です。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>本診断は医学的・臨床心理学的な診断ではなく、行動科学・進化心理学の知見に基づく自己理解のための分析サービスです。</p>
+    <p style="margin:0;">© 遊び人の金さん</p>
+  </div>
+</footer>
+
+<!-- モバイル用：固定CTAバー -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="cta-btn" data-bind="applyUrl" href="#">今の自分の「詰まりフェーズ」を知る</a>
+</div>
+
+<!-- ============================================================
+     設定エリア：ここだけ編集すればOKです
+     - applyUrl … Stripe Payment LinkのURLができたら差し替えてください
+     - priceCurrent / priceFuture … 価格を変更する際はここだけ書き換えれば
+       ページ内の該当箇所すべてに反映されます
+     - monitorSlots … 月間の受付人数が決まったら数字を入れてください
+     ============================================================ -->
+<script>
+  const CONFIG = {
+    applyUrl: "#TODO-STRIPE-PAYMENT-LINK",   // ←Stripe Payment LinkのURLに差し替える
+    priceCurrent: "1,980円",
+    priceFuture: "3,980円",
+    monitorSlots: "◯"
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-bind="applyUrl"]').forEach(el => {
+      el.setAttribute('href', CONFIG.applyUrl);
+      if (CONFIG.applyUrl.startsWith('#TODO')) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('申込リンク（Stripe Payment LinkのURL）がまだ設定されていません。\nこのファイル最下部の CONFIG.applyUrl を編集してください。');
+        });
+      }
+    });
+    document.querySelectorAll('[data-bind="priceCurrent"]').forEach(el => el.textContent = CONFIG.priceCurrent);
+    document.querySelectorAll('[data-bind="priceFuture"]').forEach(el => el.textContent = CONFIG.priceFuture);
+    document.querySelectorAll('[data-bind="monitorSlots"]').forEach(el => el.textContent = CONFIG.monitorSlots);
+
+    // モバイル固定CTAの表示制御（ヒーローを過ぎたら出す）
+    const sticky = document.getElementById('stickyCta');
+    const hero = document.querySelector('.hero');
+    const onScroll = () => {
+      const past = window.scrollY > hero.offsetHeight;
+      sticky.classList.toggle('is-visible', past);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>
+
+</body>
+</html>
