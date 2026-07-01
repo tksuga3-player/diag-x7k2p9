@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>特定商取引法に基づく表記 | 恋愛努力の詰まりフェーズ 個別診断</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:        #11161b;
+      --ink-soft:   #1a2128;
+      --paper:      #e9ece8;
+      --paper-soft: #f4f5f2;
+      --line:       #5c6b63;
+      --moss:       #3a4f42;
+      --gold:       #b09060;
+      --text:       #1e2820;
+      --text-muted: #6b7a6e;
+      --serif: 'Shippori Mincho', serif;
+      --sans:  'Zen Kaku Gothic New', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ヘッダー */
+    header {
+      background: var(--paper-soft);
+      border-bottom: 1px solid #c8d0c4;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    header a {
+      color: var(--moss);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      font-family: var(--sans);
+      transition: color 0.2s;
+    }
+    header a:hover { color: var(--ink); }
+    header a::before { content: '← '; }
+
+    .header-sep {
+      color: #a0b0a0;
+      font-size: 12px;
+    }
+
+    .header-current {
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    /* メイン */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 32px 96px;
+    }
+
+    /* ページタイトル */
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--moss);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-family: var(--sans);
+      font-weight: 700;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 6px;
+      border-bottom: 2px solid var(--moss);
+      padding-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 10px;
+      margin-bottom: 48px;
+    }
+
+    /* テーブル */
+    .disclosure-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper-soft);
+      border: 1px solid #c8d0c4;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .disclosure-table tr {
+      border-bottom: 1px solid #d4dbd0;
+    }
+
+    .disclosure-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .disclosure-table th {
+      text-align: left;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--moss);
+      letter-spacing: 0.04em;
+      padding: 18px 24px;
+      vertical-align: top;
+      width: 34%;
+      background: #dde3d8;
+      font-family: var(--sans);
+      white-space: nowrap;
+    }
+
+    .disclosure-table td {
+      padding: 18px 24px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+      vertical-align: top;
+    }
+
+    .disclosure-table td small {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .disclosure-table td a {
+      color: var(--moss);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .disclosure-table td a:hover {
+      color: var(--ink);
+    }
+
+    /* 注記 */
+    .note {
+      background: var(--paper-soft);
+      border: 1px solid #c8d0c4;
+      border-left: 3px solid var(--moss);
+      border-radius: 3px;
+      padding: 20px 24px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 48px;
+    }
+
+    .note strong {
+      color: var(--moss);
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    .note a {
+      color: var(--moss);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .note a:hover { color: var(--ink); }
+
+    /* フッター */
+    footer {
+      background: var(--paper-soft);
+      border-top: 1px solid #c8d0c4;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      header { padding: 14px 16px; }
+      main { padding: 36px 16px 60px; }
+      h1 { font-size: 20px; }
+
+      .disclosure-table th,
+      .disclosure-table td {
+        display: block;
+        width: 100%;
+        padding: 12px 16px;
+      }
+      .disclosure-table th {
+        padding-bottom: 6px;
+        border-bottom: none;
+        white-space: normal;
+      }
+      .disclosure-table td {
+        padding-top: 6px;
+        padding-bottom: 16px;
+      }
+      .disclosure-table tr {
+        border-bottom: 1px solid #d4dbd0;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="../">個別診断トップ</a>
+    <span class="header-sep">/</span>
+    <span class="header-current">特定商取引法に基づく表記</span>
+  </header>
+
+  <main>
+    <p class="page-eyebrow">Legal Notice</p>
+    <h1>特定商取引法に基づく表記</h1>
+    <p class="subtitle">Specified Commercial Transaction Act Disclosure</p>
+
+    <table class="disclosure-table">
+      <tr>
+        <th>販売事業者</th>
+        <td>
+          KS OFFICE<br>
+          代表 須貝康則
+        </td>
+      </tr>
+      <tr>
+        <th>運営責任者</th>
+        <td>須貝康則</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <!-- Stripe審査通過後→「ご請求があれば開示します」に変更可 -->
+        <td>埼玉県さいたま市浦和区岸町4-21-12</td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <!-- Stripe審査通過後→「ご請求があれば開示します」に変更可 -->
+        <td>
+          070-8599-4669
+          <small>※お問い合わせはメールにてお願いします</small>
+        </td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><a href="mailto:story.gotosuke@gmail.com">story.gotosuke@gmail.com</a></td>
+      </tr>
+      <tr>
+        <th>販売価格</th>
+        <!-- 値上げ時はここを変更 -->
+        <td>¥1,980（税込）</td>
+      </tr>
+      <tr>
+        <th>お支払い方法</th>
+        <td>クレジットカード（Stripe）</td>
+      </tr>
+      <tr>
+        <th>商品の引き渡し時期</th>
+        <td>
+          決済完了後、診断フォーム（Tally）に自動的にリダイレクトされます。<br>
+          ご回答いただいた後、3〜5営業日以内に診断レポートをメールにてお送りします。
+        </td>
+      </tr>
+      <tr>
+        <th>返品・キャンセルについて</th>
+        <td>
+          デジタルコンテンツおよびサービスの性質上、決済完了後のお客様都合によるキャンセル・返金・返品はお受けできません。<br>
+          ただし、当方の都合により診断をお届けできない場合は、全額返金いたします。
+        </td>
+      </tr>
+      <tr>
+        <th>動作環境</th>
+        <td>インターネット接続環境、メール受信が可能な環境が必要です。</td>
+      </tr>
+    </table>
+
+    <div class="note">
+      <strong>お問い合わせについて</strong>
+      ご不明な点がございましたら、メール（<a href="mailto:story.gotosuke@gmail.com">story.gotosuke@gmail.com</a>）にてお気軽にお問い合わせください。原則として2営業日以内にご返信いたします。
+    </div>
+
+  </main>
+
+  <footer>
+    © 遊び人の金さん（KS OFFICE）
+  </footer>
+
+</body>
+</html>
