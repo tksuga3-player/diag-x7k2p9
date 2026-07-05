@@ -1,582 +1,638 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>恋愛努力の順番｜個別診断LP</title>
-  <meta name="description" content="25の質問で、あなたが今どのフェーズにいるか、なぜ次に進めないのか、何をすればいいのかを診断します。" />
-  <style>
-    :root {
-      --ink: #111;
-      --muted: #555;
-      --line: #d8d8d8;
-      --paper: #fff;
-      --bg: #f6f5f2;
-      --soft: #fbfaf7;
-      --accent: #111;
-      --accent-2: #a8742a;
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.9), rgba(246,245,242,1) 42%),
-        var(--bg);
-      color: var(--ink);
-      font-family: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Noto Serif JP", "Times New Roman", serif;
-      line-height: 2.02;
-      letter-spacing: 0.035em;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; }
-
-    .page {
-      width: min(100%, 940px);
-      margin: 0 auto;
-      padding: 48px 18px 96px;
-    }
-
-    .paper {
-      background: var(--paper);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.06);
-      padding: clamp(32px, 7vw, 72px) clamp(22px, 7vw, 76px);
-    }
-
-    .inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 4px 12px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      background: var(--soft);
-    }
-
-    h1, h2, h3, p, ul, blockquote { margin-top: 0; }
-
-    h1 {
-      margin-bottom: 14px;
-      font-size: clamp(25px, 4.2vw, 42px);
-      line-height: 1.45;
-      letter-spacing: 0.04em;
-      font-weight: 800;
-    }
-
-    .subtitle {
-      margin: 0 0 26px;
-      font-size: clamp(17px, 2.2vw, 22px);
-      font-weight: 700;
-      line-height: 1.8;
-    }
-
-    .lead {
-      color: #222;
-      font-size: clamp(15px, 1.8vw, 17px);
-    }
-
-    .rule {
-      height: 1px;
-      border: none;
-      background: var(--line);
-      margin: 34px 0 28px;
-    }
-
-    section { margin-top: 48px; }
-
-    h2 {
-      margin-bottom: 22px;
-      font-size: clamp(20px, 2.7vw, 26px);
-      line-height: 1.55;
-      letter-spacing: 0.04em;
-      font-weight: 800;
-    }
-
-    h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-      line-height: 1.65;
-      font-weight: 800;
-    }
-
-    p { margin-bottom: 18px; }
-
-    .scene {
-      padding: 24px 0 4px;
-    }
-
-    .quote-line {
-      margin: 24px 0;
-      padding: 16px 18px;
-      background: #fafafa;
-      border-left: 4px solid var(--ink);
-      font-weight: 800;
-      line-height: 1.8;
-    }
-
-    .phase-list {
-      margin: 22px 0 28px;
-      padding-left: 1.7em;
-      list-style: none;
-    }
-
-    .phase-list li {
-      position: relative;
-      margin-bottom: 10px;
-      padding-left: 0.55em;
-      line-height: 1.75;
-    }
-
-    .phase-list li::before {
-      content: "●";
-      position: absolute;
-      left: -1.25em;
-      top: 0.08em;
-      font-size: 0.72em;
-      font-weight: 800;
-    }
-
-    .phase-list strong {
-      font-weight: 800;
-    }
-
-    .note {
-      margin: 24px 0;
-      padding: 20px 22px;
-      border: 1px solid var(--line);
-      background: #fffdf8;
-    }
-
-    blockquote {
-      margin: 26px 0;
-      padding: 22px 24px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      color: #222;
-      background: #fcfcfc;
-    }
-
-    ul {
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    li {
-      position: relative;
-      margin-bottom: 10px;
-      padding-left: 1.45em;
-    }
-
-    li::before {
-      content: "・";
-      position: absolute;
-      left: 0;
-      font-weight: 800;
-    }
-
-    .diagnosis-box {
-      margin: 26px 0 0;
-      padding: 26px 24px;
-      border: 1px solid var(--ink);
-      background: #fff;
-    }
-
-    .diagnosis-box ol {
-      margin: 16px 0 0;
-      padding-left: 1.35em;
-    }
-
-    .diagnosis-box li {
-      padding-left: 0;
-      list-style: decimal;
-    }
-
-    .diagnosis-box li::before { display: none; }
-
-    .price-teaser {
-      display: flex;
-      align-items: baseline;
-      gap: 0.9em;
-      flex-wrap: wrap;
-      margin: 10px 0 18px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .price-step-1 { font-size: 1em; }
-    .price-step-2 { font-size: 1.18em; }
-    .price-step-3 { font-size: 1.4em; }
-
-    .price-card {
-      margin: 30px 0;
-      padding: clamp(24px, 4vw, 36px);
-      border: 2px solid var(--ink);
-      background: linear-gradient(180deg, #fff, #fbfaf7);
-      text-align: center;
-    }
-
-    .limited {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 3px 12px;
-      border: 1px solid var(--ink);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-
-    .price {
-      margin: 8px 0 8px;
-      font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
-      font-size: clamp(38px, 7vw, 64px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: 0.01em;
-    }
-
-    .price small {
-      font-size: 0.38em;
-      font-weight: 700;
-    }
-
-    .normal-price {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .cta-wrap {
-      margin: 34px 0 12px;
-      text-align: center;
-    }
-
-    .cta {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 64px;
-      width: min(100%, 560px);
-      padding: 16px 22px;
-      border: 2px solid var(--ink);
-      background: var(--accent);
-      color: #fff;
-      font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
-      font-size: clamp(17px, 2.4vw, 22px);
-      font-weight: 800;
-      line-height: 1.45;
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-    }
-
-    .cta-sub {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .guarantee {
-      padding: 24px 24px 26px;
-      border: 1px solid var(--line);
-      background: #fafafa;
-    }
-
-    .ps {
-      margin-top: 50px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-    }
-
-    .final-line {
-      margin-top: 30px;
-      text-align: center;
-      font-weight: 800;
-    }
-
-    .legal-links {
-      margin-top: 42px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-      font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .legal-links a {
-      color: var(--muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .legal-links .separator {
-      margin: 0 0.8em;
-      color: #aaa;
-    }
-
-    .mobile-sticky {
-      display: none;
-    }
-
-    @media (max-width: 640px) {
-      body { line-height: 1.9; }
-      .page { padding: 16px 10px 96px; }
-      .paper { padding: 30px 18px 54px; }
-      .eyebrow { font-size: 12px; }
-      section { margin-top: 40px; }
-      .quote-line, .note, blockquote, .diagnosis-box, .guarantee { padding: 16px; }
-      .legal-links {
-      margin-top: 42px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-      font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .legal-links a {
-      color: var(--muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .legal-links .separator {
-      margin: 0 0.8em;
-      color: #aaa;
-    }
-
-    .mobile-sticky {
-        display: block;
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 20;
-        padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-        background: rgba(255,255,255,0.96);
-        border-top: 1px solid var(--line);
-        box-shadow: 0 -8px 26px rgba(0,0,0,0.12);
-      }
-      .mobile-sticky .cta {
-        min-height: 50px;
-        font-size: 15px;
-      }
-    }
-
-    @media print {
-      body { background: #fff; }
-      .page { padding: 0; }
-      .paper { box-shadow: none; border: none; }
-      .mobile-sticky { display: none; }
-      .cta { color: #000; background: #fff; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>恋愛努力の順番 ｜ 判定方法と詳細解説</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&family=Noto+Serif+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EAE6D9;
+    --paper:#F8F5EC;
+    --ink:#211F1A;
+    --muted:#6E6856;
+    --line:#CFC6AC;
+    --ochre:#93672C;
+    --brick:#8C3B2E;
+    --brick-soft:#F1E2DC;
+    --ochre-soft:#F0E6D3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Noto Serif JP", serif;
+    line-height:1.85;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 20px 120px;
+  }
+  /* ---------- Header / stamp ---------- */
+  header.cover{
+    position:relative;
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:36px;
+  }
+  .stamp{
+    position:absolute;
+    top:40px;
+    right:0;
+    border:1.5px dashed var(--brick);
+    color:var(--brick);
+    font-family:"JetBrains Mono", monospace;
+    font-size:11px;
+    letter-spacing:.12em;
+    padding:5px 10px;
+    transform:rotate(4deg);
+    white-space:nowrap;
+  }
+  .eyebrow{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px;
+    letter-spacing:.18em;
+    color:var(--muted);
+    margin:0 0 14px;
+  }
+  h1.title{
+    font-family:"Shippori Mincho", serif;
+    font-weight:800;
+    font-size:clamp(28px,5vw,40px);
+    line-height:1.4;
+    margin:0 0 14px;
+    max-width:9.5em;
+  }
+  .lede{
+    color:var(--muted);
+    font-size:15px;
+    max-width:34em;
+    margin:0;
+  }
+  /* ---------- Notice banner ---------- */
+  .notice{
+    background:var(--paper);
+    border-left:3px solid var(--ochre);
+    padding:16px 18px;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:40px;
+  }
+  .notice strong{color:var(--brick);}
+  /* ---------- Gate diagram (signature element / nav) ---------- */
+  .gate-nav{
+    margin-bottom:48px;
+  }
+  .gate-nav .howto{
+    font-size:13.5px;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  .gate-track{
+    display:flex;
+    align-items:stretch;
+    overflow-x:auto;
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:18px 14px;
+    gap:0;
+    -webkit-overflow-scrolling:touch;
+  }
+  .gate-node{
+    flex:0 0 auto;
+    width:84px;
+    text-align:center;
+    cursor:pointer;
+    background:none;
+    border:none;
+    font-family:inherit;
+    padding:6px 4px;
+  }
+  .gate-node .num{
+    font-family:"JetBrains Mono", monospace;
+    font-weight:700;
+    font-size:20px;
+    color:var(--ink);
+    display:block;
+  }
+  .gate-node .label{
+    font-size:11px;
+    color:var(--muted);
+    display:block;
+    margin-top:4px;
+    line-height:1.4;
+  }
+  .gate-node:hover .num{color:var(--brick);}
+  .gate-line{
+    flex:1 1 auto;
+    min-width:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .gate-line::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;top:50%;
+    border-top:1px dashed var(--ochre);
+  }
+  .gate-line span{
+    background:var(--ochre-soft);
+    color:var(--ochre);
+    font-family:"JetBrains Mono", monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    padding:3px 6px;
+    position:relative;
+    white-space:nowrap;
+  }
+  /* ---------- Section headings ---------- */
+  h2.section-title{
+    font-family:"Shippori Mincho", serif;
+    font-weight:800;
+    font-size:22px;
+    margin:0 0 18px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-title .tag{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px;
+    color:var(--ochre);
+    display:block;
+    letter-spacing:.1em;
+    margin-bottom:6px;
+  }
+  /* ---------- 判定ロジック block ---------- */
+  .logic-block{
+    margin-bottom:56px;
+  }
+  .logic-item{
+    border-top:1px solid var(--line);
+    padding:18px 0;
+  }
+  .logic-item:first-of-type{border-top:none;}
+  .logic-item .ph-name{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12.5px;
+    color:var(--brick);
+    letter-spacing:.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+  .logic-item h3{
+    font-size:17px;
+    margin:0 0 8px;
+  }
+  .logic-item ul{
+    margin:0 0 8px;
+    padding-left:1.2em;
+    font-size:14.5px;
+  }
+  .logic-item p.summary{
+    font-size:14.5px;
+    color:var(--muted);
+    margin:0;
+  }
+  /* ---------- Accordion (phase detail) ---------- */
+  .phases{margin-bottom:56px;}
+  details.phase{
+    background:var(--paper);
+    border:1px solid var(--line);
+    margin-bottom:10px;
+  }
+  details.phase[open]{border-color:var(--ochre);}
+  details.phase summary{
+    cursor:pointer;
+    list-style:none;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  details.phase summary::-webkit-details-marker{display:none;}
+  details.phase summary .ph-num{
+    font-family:"JetBrains Mono", monospace;
+    font-weight:700;
+    font-size:18px;
+    color:var(--brick);
+    flex:0 0 auto;
+  }
+  details.phase summary .ph-title{
+    font-weight:700;
+    font-size:15.5px;
+    flex:1 1 auto;
+  }
+  details.phase summary .chev{
+    font-family:"JetBrains Mono", monospace;
+    color:var(--muted);
+    font-size:13px;
+    flex:0 0 auto;
+    transition:transform .2s ease;
+  }
+  details.phase[open] summary .chev{transform:rotate(45deg);}
+  .phase-body{
+    padding:0 20px 26px;
+    border-top:1px dashed var(--line);
+  }
+  .phase-body h4{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    color:var(--ochre);
+    margin:24px 0 10px;
+  }
+  .phase-body p, .phase-body li{
+    font-size:15px;
+  }
+  .phase-body ul{padding-left:1.2em;margin:8px 0;}
+  .phase-body .bottleneck-box{
+    background:var(--brick-soft);
+    border-left:3px solid var(--brick);
+    padding:14px 16px;
+    margin:10px 0;
+    font-size:14.5px;
+  }
+  /* ---------- Closing ---------- */
+  .closing{
+    margin-bottom:48px;
+    font-size:15px;
+  }
+  .closing .order-list{
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:18px 22px;
+    margin:18px 0;
+  }
+  .closing .order-list li{margin-bottom:8px;}
+  /* ---------- CTA slip ---------- */
+  .cta-slip{
+    border:1.5px dashed var(--ochre);
+    background:var(--paper);
+    padding:30px 26px;
+    position:relative;
+  }
+  .cta-slip::before{
+    content:"REFERRAL";
+    position:absolute;
+    top:-10px;
+    left:24px;
+    background:var(--bg);
+    padding:0 8px;
+    font-family:"JetBrains Mono", monospace;
+    font-size:11px;
+    letter-spacing:.15em;
+    color:var(--ochre);
+  }
+  .cta-slip h3{
+    font-family:"Shippori Mincho", serif;
+    font-size:20px;
+    margin:6px 0 12px;
+  }
+  .cta-slip p{font-size:14.5px;color:var(--muted);margin:0 0 18px;}
+  .cta-button{
+    display:inline-block;
+    background:var(--brick);
+    color:#fff !important;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+    padding:13px 26px;
+    border-radius:3px;
+  }
+  .cta-button:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--brick);
+    outline-offset:2px;
+  }
+  footer.fineprint{
+    color:var(--muted);
+    font-size:12.5px;
+    text-align:center;
+    margin-top:60px;
+  }
+</style>
 </head>
 <body>
-  <main class="page">
-    <article class="paper">
-      <div class="inner">
-        <header>
-          <div class="eyebrow">恋愛努力の順番｜個別診断</div>
-          <h1>「ご趣味は……？」<br>「特にありません」</h1>
-          <p class="subtitle">――そして、会話は完全に沈黙した。</p>
-          <p class="lead">もしこの一言で、心臓がすっと冷たくなったなら、このページは、あなたのために書きました。</p>
-        </header>
+<div class="wrap">
 
-        <hr class="rule">
+  <header class="cover">
+    <div class="stamp">CASE FILE — 限定共有</div>
+    <p class="eyebrow">恋愛努力の順番診断 / 解説レポート</p>
+    <h1 class="title">あなたの詰まりフェーズを、ここで確定させてください</h1>
+    <p class="lede">noteの無料セルフ診断（Q1〜Q14）にご回答いただいた方向けの解説ページです。ご自身の回答を思い出しながら、下記の判定方法に沿って該当フェーズを確認してください。</p>
+  </header>
 
-        <section class="scene">
-          <h2>その日、あなたに何が起きていたか</h2>
-          <p>マッチングアプリで、何度もやり取りを重ねて、やっと会えた女性。待ち合わせのカフェ。少し緊張しながら、あなたは心の中で繰り返していたはずだ。</p>
-          <p>「今日は、流れるようなトークで攻める。“教祖様”（有名な恋愛系インフルエンサー）が言っていた通り、“男を感じさせる会話”で押し切れば、この後の展開も変わる」</p>
-          <p>意気込んで店に入った。コーヒーの匂い、店内のざわめき、向かいに座った彼女の視線。</p>
-          <p>さあ、いくぞ――そう思った瞬間、頭が真っ白になった。</p>
-          <p>そもそも、あなたはこれまでの人生で、初対面の女性を“トークで圧倒”したことなど一度もなかった。口下手で通してきた。だから、絞り出せた言葉は、たった一言。</p>
-
-          <div class="quote-line">「ご、ご趣味は……？」</div>
-
-          <p>彼女は静かに、そして少しの温度もなく答えた。</p>
-
-          <div class="quote-line">「特にありません」</div>
-
-          <p>そこで、会話は完全に止まった。その後は何を話しても弾まず、彼女は当初の予定より早く、逃げるようにその場を後にした。</p>
-          <p>家に帰る電車の中で、あなたは何度もその瞬間を再生していたはずだ。</p>
-          <p>「何が、どうなってるんだ……」<br>「いったい、オレはどうすればこの状況から抜け出せるんだ……」</p>
-          <p>布団に入っても、眠れない。</p>
-        </section>
-
-        <section>
-          <h2>あなたは、悪くない。ただ、努力の場所を間違えていただけだ</h2>
-          <p>先に言っておく。あなたは口下手なのが悪いのではない。努力していないのでもない。むしろ、あなたはこれまで人一倍努力してきたはずだ。</p>
-          <p>高額な恋愛系の情報商材を買った。有名講師のセミナーにも足を運んだ。SNSで発信されている“モテるテクニック”も、ノートに書き留めて実践してきた。</p>
-          <p>それでも、結果が出ない。</p>
-          <p>なぜか。</p>
-          <p>それは、その情報のほとんどが「発信者本人の生存バイアス」で語られているからだ。たまたまその人にハマった手法を、“誰にでも効く普遍的な方法”として売られている。再現性がない。だから、あなたは何度も同じ場所でつまずき続けている。</p>
-          <p>そしてもう一つ、致命的な理由がある。</p>
-          <p>あなたはその日、“分数の割り算もできないのに、いきなり方程式を解こうとしていた”のだ。</p>
-        </section>
-
-        <section>
-          <h2>女性との関係には、超えるべき「4本のライン」がある</h2>
-          <p>進化心理学の視点から見ると、女性が男性を評価する基準には、明確な“段階”が存在する。</p>
-
-          <ul class="phase-list">
-            <li><strong>フェーズ0（接続フェーズ）</strong>：接触導線不足。女性との接点そのものが不足しており、会話力や男としての魅力以前に、検証母数が足りない状態。</li>
-            <li><strong>フェーズ1（警戒フェーズ）</strong>：拒絶ライン未満。「怖い」「無理」と警戒される段階。清潔感や距離感など、まず“嫌われない”ための土台づくり。</li>
-            <li><strong>フェーズ2（安心フェーズ）</strong>：安全ライン通過。人として自然に話せる段階。ただし「いい人」止まりになりやすい。</li>
-            <li><strong>フェーズ3（対象フェーズ）</strong>：男としての候補ライン通過。恋愛・性的対象として意識される段階。</li>
-            <li><strong>フェーズ4（信頼フェーズ）</strong>：長期伴侶ライン通過。彼氏・将来のパートナーとして信頼される段階。</li>
-          </ul>
-
-          <p>重要なのは、下のラインを超えていないのに、上のラインの技術を使うと、ほぼ確実に失敗するということだ。</p>
-
-          <p>あの日のあなたは、フェーズ2――「安心して自然に会話できる」段階すら固まっていなかった。それなのに、フェーズ3で使うべき“男としての輪郭を出すトーク”を、いきなりぶつけようとしていた。</p>
-          <p>うまくいくはずがない。</p>
-          <p>これは、あなたの人間性の問題でも、モテる／モテないの才能の問題でもない。努力の「順番」が、ズレていただけなのだ。</p>
-        </section>
-
-        <section>
-          <h2>実際に、順番を正しただけで結果が変わった人がいる</h2>
-          <p>中村修一さん（仮名）も、まったく同じ状態だった。</p>
-
-          <blockquote>
-            「フェーズ2の基本的な会話すらできていないのに、フェーズ3である“男の輪郭”を出そうとしていました。今思えば、分数の割り算もできないのに、方程式の問題を解こうとしているようなものです。うまくいくわけがなかった。しかも、その努力の方向性のズレに、自分では一生気づけなかったと思います」
-          </blockquote>
-
-          <p>中村さんは、この診断とモデルに沿って、下のフェーズから順番にボトルネックを潰すトレーニングを始めた。</p>
-          <p>まず、女性と“普通に”会話が続けられるようになった（フェーズ2の安定）。次に、軽い冗談やからかい、あえての沈黙といった“間”を使えるようになった（フェーズ3への移行）。</p>
-          <p>そして――ついに、交際に至った。</p>
-        </section>
-
-        <section>
-          <h2>あなたの“今の立ち位置”を、正確に知る方法</h2>
-          <p>この個別診断サービスでやることは、シンプルだ。</p>
-          <p><strong>25の質問に答えるだけで、以下の3つが明らかになる。</strong></p>
-
-          <div class="diagnosis-box">
-            <ol>
-              <li>あなたが今、5つのフェーズのどこにいるか（現在地の特定）</li>
-              <li>なぜ今、次のフェーズに進めていないのか（ボトルネックの特定）</li>
-              <li>そのボトルネックを潰すために、具体的に何をすればいいか（次の一手）</li>
-            </ol>
-          </div>
-
-          <p>一般的な恋愛コンテンツのように、「とにかくこれをやれば全員うまくいく」という話ではない。あなたの現在地に合わない努力は、どれだけ量をこなしても結果に繋がらないからだ。</p>
-        </section>
-
-        <section>
-          <h2>こんな人に向いています</h2>
-          <ul>
-            <li>恋愛のために努力しているのに、結果が出ずに焦っている人</li>
-            <li>情報商材やセミナーに散々お金を使い、もう騙されたくない人</li>
-            <li>「なぜ自分だけうまくいかないのか」を、感覚ではなく構造で理解したい人</li>
-            <li>遠回りをやめて、正しい順番で、最短距離を進みたい人</li>
-          </ul>
-          <p class="final-line">こんなあなたなら大歓迎です。</p>
-        </section>
-
-        <section>
-          <h2>こんな人には向いていない</h2>
-          <ul>
-            <li>このセリフを言えばモテる系のノウハウを探している人</li>
-            <li>診断結果を受け取っても、実践する気がない人</li>
-            <li>女性を騙したり操作したりするテクニックを求めている人</li>
-          </ul>
-          <p>このモデルの目的は、あなた自身の対人関係の質を上げることであり、相手を操作することではない。</p>
-        </section>
-
-
-        <section>
-          <h2>納品内容</h2>
-          <p>回答内容をもとに、以下の形式で診断レポートを作成します。</p>
-          <ul>
-            <li>総合診断</li>
-            <li>現在の詰まりフェーズ</li>
-            <li>フェーズ判定の根拠</li>
-            <li>事例ごとの分析</li>
-            <li>女性側から見た印象仮説</li>
-            <li>本人が誤解していそうなポイント</li>
-            <li>改善優先順位</li>
-            <li>やってはいけない改善努力</li>
-            <li>7日間の改善課題</li>
-            <li>14日間の改善課題</li>
-            <li>次に必要なトレーニング</li>
-          </ul>
-        </section>
-
-        <section id="price">
-          <h2>いったいこの価格はいくらなのか</h2>
-          <p class="price-teaser"><span class="price-step-1">1万円？</span><span class="price-step-2">5万円？</span><span class="price-step-3">10万円？</span></p>
-          <p>正直に言うと、この診断1回で人生が劇的に変わる、とは言わない。だが、これまであなたが情報商材やセミナーに払ってきた金額を思い出してほしい。数万円、数十万円を払って、結局「自分の状況に合わない」テクニックを覚えさせられてきたのではないか。</p>
-          <p>そこで、あなたと1つの約束をさせてください。本診断を受けた、またはボトルネック解消に動いてみた「生々しい感想」を私に送っていただきたいのです。</p>
-          <p>もし、その約束を守っていただける「先着20名様」に限っては、通常価格3,980円のところ、半額以下の価格でご提供いたします。単なる冷やかしの方はご遠慮ください。本気で人生を変える覚悟があり、約束を守れる方だけ、今すぐ下のボタンを押してください。</p>
-
-          <div class="price-card">
-            <div class="limited">先着20名様限定</div>
-            <p class="normal-price">通常価格 <s>3,980円</s></p>
-            <div class="price"><small>税込</small> 1,980<small>円</small></div>
-            <p class="normal-price">生々しい感想を送っていただける方限定</p>
-          </div>
-
-          <p>今日、この文章を読んで「自分のことだ」と感じたなら、その感覚を放置した先にあるのは、また同じ夜、また同じ沈黙、また同じ後悔だ。</p>
-          <p>情報商材を買い続けて何年も経った“未来のあなた”と、現在地を診断し、正しい順番で進み始めた“未来のあなた”。</p>
-          <p>どちらになりたいか――それは、今日、あなたが決めることだ。</p>
-
-        </section>
-
-        <section>
-          <h2>完全返金保証付き</h2>
-          <div class="guarantee">
-            <p>そうはいっても、あなたは「またしょうもない商材に騙されるんじゃないか」とご不安に思われるかもしれません。そこで、リスクはすべて私が肩代わりいたします。</p>
-            <p>万が一、満足されなかった場合は理由に関わらず全額返金いたします。猫がボタンを押して削除してしまったからという理由でもかまいません。ご連絡後、5営業日以内にあなた指定の銀行口座に振り込みいたします。手数料も私の負担です。これであなたにリスクは一切ありません。</p>
-          </div>
-
-          <div class="cta-wrap" id="apply">
-            <!-- 申込フォームURLに差し替えてください -->
-            <a class="cta" href="#apply">今すぐ1,980円で、<br>自分のフェーズを診断する</a>
-          </div>
-        </section>
-
-        <section class="ps">
-          <h2>追伸</h2>
-          <p>「ご趣味は……？」「特にありません」――あの沈黙は、割り算を習得する前に方程式を解かされていただけの話です。</p>
-          <p>「これは私のための診断だ」と直感されたあなた。迷っている時間はありません。今すぐ申し込みボタンをクリックしてください。</p>
-          <p class="final-line">正しい場所から、正しい順番で。<br>まずは、あなたの現在地を知ることから始めてください。</p>
-        </section>
-        <footer class="legal-links">
-          <!-- 後で以下の href="#" を各ページURLに差し替えてください -->
-          <a href="#" rel="noopener">プライバシーポリシー</a>
-          <span class="separator">｜</span>
-          <a href="#" rel="noopener">特定商取引法に基づく表記</a>
-        </footer>
-      </div>
-    </article>
-  </main>
-
-  <div class="mobile-sticky" aria-hidden="true">
-    <a class="cta" href="#apply">今すぐ1,980円で診断する</a>
+  <div class="notice">
+    これは<strong>暫定診断</strong>です。あなたの人格や恋愛力を一発で固定するものではありません。相手の女性ごとに当てはまり方が変わることもあります。正確な判定には、実際の会話ログや誘い方、相手の反応などの具体的な事例が必要です。
   </div>
+
+  <nav class="gate-nav" aria-label="フェーズ一覧">
+    <p class="howto">下の番号をクリックすると、該当フェーズの詳細解説にジャンプします。</p>
+    <div class="gate-track">
+      <button class="gate-node" onclick="openAndScroll('phase-0')">
+        <span class="num">0</span><span class="label">接触導線<br>不足</span>
+      </button>
+      <div class="gate-line"><span>拒絶ライン</span></div>
+      <button class="gate-node" onclick="openAndScroll('phase-1')">
+        <span class="num">1</span><span class="label">拒絶ライン<br>未満</span>
+      </button>
+      <div class="gate-line"><span>安全ライン</span></div>
+      <button class="gate-node" onclick="openAndScroll('phase-2')">
+        <span class="num">2</span><span class="label">安全ライン<br>未満</span>
+      </button>
+      <div class="gate-line"><span>候補ライン</span></div>
+      <button class="gate-node" onclick="openAndScroll('phase-3')">
+        <span class="num">3</span><span class="label">男としての<br>候補未満</span>
+      </button>
+      <div class="gate-line"><span>伴侶ライン</span></div>
+      <button class="gate-node" onclick="openAndScroll('phase-4')">
+        <span class="num">4</span><span class="label">長期伴侶<br>未満</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ 判定方法 ============ -->
+  <section class="logic-block" aria-label="判定方法">
+    <h2 class="section-title"><span class="tag">STEP 1 — 判定方法</span>上から順番に確認してください</h2>
+
+    <div class="logic-item">
+      <span class="ph-name">PHASE 0</span>
+      <h3>まず「接触導線不足」を確認する</h3>
+      <ul>
+        <li>直近30日で接触した女性が0〜2人（Q3がA・B）</li>
+        <li>1分以上の会話が成立した回数が0〜2回（Q4がA・B）</li>
+        <li>女性を誘ったことがない（Q8がA）</li>
+        <li>二人で会えていない（Q10がA）</li>
+      </ul>
+      <p class="summary">この場合、恋愛力以前に観測データが不足しています。拒絶されているのか、安全ライン未満なのかを判定できるだけの接触回数がありません。</p>
+    </div>
+
+    <div class="logic-item">
+      <span class="ph-name">PHASE 1</span>
+      <h3>次に「拒絶ライン未満」を確認する</h3>
+      <ul>
+        <li>目を合わせない、会話をすぐ切られることが多い（Q5がA・B）</li>
+        <li>そもそも会話が始まらない（Q6がA）</li>
+        <li>女性からのリアクションがほぼない（Q7がA）</li>
+      </ul>
+      <p class="summary">この段階では、口説き方より先に、拒絶・警戒・不快を減らす必要があります。</p>
+    </div>
+
+    <div class="logic-item">
+      <span class="ph-name">PHASE 2</span>
+      <h3>次に「安全ライン未満」を確認する</h3>
+      <ul>
+        <li>会話は始まるが続かない（Q5がB・C、Q6がB・C）</li>
+        <li>相手から質問がほぼ返ってこない（Q7がA・B）</li>
+      </ul>
+      <p class="summary">この段階では、恋愛の空気を出す前に、まず「人として普通に関われる男」になる必要があります。</p>
+    </div>
+
+    <div class="logic-item">
+      <span class="ph-name">PHASE 3</span>
+      <h3>次に「男としての候補ライン未満」を確認する</h3>
+      <ul>
+        <li>会話はできるが、恋愛の空気にならない（Q5がC・D、Q6がD、Q7がC・D）</li>
+        <li>誘っても具体的な日程にならない、または会えても次につながらない（Q8がB・C・D、Q9がB・C、Q10がB・C）</li>
+      </ul>
+      <p class="summary">この段階では、優しさや誠実さを増やすだけでは足りません。安全性を保ったまま、男としての輪郭を出す必要があります。</p>
+    </div>
+
+    <div class="logic-item">
+      <span class="ph-name">PHASE 4</span>
+      <h3>最後に「長期伴侶ライン未満」を確認する</h3>
+      <ul>
+        <li>二人で会える・関係が進むことがある（Q10がD・E、Q12がD・E）</li>
+        <li>しかし、付き合うところや継続の場面で崩れる（Q13がD・E）</li>
+      </ul>
+      <p class="summary">この段階では、男としての魅力だけでは足りません。長期的に人生へ入れても大丈夫だと思われる信頼・安定・関係運営能力が必要です。</p>
+    </div>
+  </section>
+
+  <!-- ============ フェーズ別詳細 ============ -->
+  <section class="phases" aria-label="フェーズ別詳細解説">
+    <h2 class="section-title"><span class="tag">STEP 2 — 詳細解説</span>該当フェーズを開いて読んでください</h2>
+
+    <details class="phase" id="phase-0">
+      <summary>
+        <span class="ph-num">0</span>
+        <span class="ph-title">接触導線不足</span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="phase-body">
+        <h4>あなたの暫定フェーズ</h4>
+        <p>今は恋愛力以前に、観測データが不足している可能性が高い状態です。女性との接触回数が少なすぎるため、拒絶されているのか、安全ライン未満なのか、男として見られていないのかを判定できません。これは「恋愛力が低い」というより、まだ診断できるだけの材料がない状態です。</p>
+
+        <h4>よくあるボトルネック</h4>
+        <div class="bottleneck-box">恋愛の勉強をしているのに、実際の接触データが増えていない。会話術・LINE術・口説き方・デートプラン・告白のタイミングを学んでも、接触回数が少なければ、自分がどこで落ちているのか分かりません。問題は「恋愛テクニック不足」ではなく、観測回数不足です。</div>
+
+        <h4>やらなくていい努力</h4>
+        <p>今すぐ高度な口説き方を学ぶ必要はありません。LINEテクニック、告白文、デート中の駆け引きより、まずは女性と自然に接触する導線を作る方が先です。</p>
+
+        <h4>まず1週間やる練習</h4>
+        <ul>
+          <li>店員・美容師・受付・スタッフと短く会話する</li>
+          <li>趣味・イベント・勉強会に1つ申し込む</li>
+          <li>マッチングアプリならプロフィール改善＋10〜30いいねを実行する</li>
+          <li>女性がいる場に1回出る</li>
+        </ul>
+        <p>目的はいきなりデートに進めることではなく、まず自分の現実の反応データを集めることです。</p>
+
+        <h4>有料診断で見るべきログ</h4>
+        <ul>
+          <li>直近30日で女性と接触した回数・場所・会話内容・相手の反応</li>
+          <li>自分から接触を増やせない理由</li>
+          <li>マッチングアプリならプロフィール・写真・いいね数・マッチ数</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="phase" id="phase-1">
+      <summary>
+        <span class="ph-num">1</span>
+        <span class="ph-title">拒絶ライン未満</span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="phase-body">
+        <h4>あなたの暫定フェーズ</h4>
+        <p>恋愛対象になる以前に、女性側の警戒・不快・拒絶が出ている可能性があります。女性が求めているのは魅力より先に「近くにいても大丈夫」「話しかけられても怖くない」「断っても引いてくれそう」という最低限の安心です。</p>
+
+        <h4>よくあるボトルネック</h4>
+        <div class="bottleneck-box">会話術ではなく、不快要因です。清潔感、髪型、服装、口臭・体臭、歯・肌・爪、姿勢、声量、表情、距離感、目線、断られたときの引き方。本人は普通に接しているつもりでも、女性側の身体感覚では「近づかれたくない」「圧がある」と判定されていることがあります。</div>
+
+        <h4>やらなくていい努力</h4>
+        <p>口説き文句、恋愛テクニック、LINEの駆け引き、強いアプローチを学ぶ段階ではありません。拒絶ラインを超えていない状態で使うと、警戒や不快を強めやすいです。</p>
+
+        <h4>まず1週間やる練習</h4>
+        <ul>
+          <li>外見・清潔感の点検（髪・眉・髭・鼻毛・歯・口臭・体臭・服のヨレ・靴・爪）</li>
+          <li>距離感の練習（店員・受付などとの短いやり取りで、圧をかけずに気持ちよく終える）</li>
+          <li>撤退の練習（反応が薄ければ追わずに引く）</li>
+        </ul>
+        <p>目的は惚れさせることではなく、「この人は近くにいても大丈夫」と感じられる男になることです。</p>
+
+        <h4>有料診断で見るべきログ</h4>
+        <ul>
+          <li>服装・髪型・写真／会話開始時の相手の反応</li>
+          <li>距離感・声量・表情・姿勢／断られたときの対応</li>
+          <li>マッチングアプリなら写真・自己紹介文・マッチ率、対面なら声かけ文と初期反応</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="phase" id="phase-2">
+      <summary>
+        <span class="ph-num">2</span>
+        <span class="ph-title">安全ライン未満</span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="phase-body">
+        <h4>あなたの暫定フェーズ</h4>
+        <p>女性と会話する場は作れているものの、会話が続かない、相手から質問が返ってこない、空気が重い状態です。恋愛対象になる前に、まず「人として普通に関われる」「話していて負荷が少ない」と感じられる必要があります。</p>
+
+        <h4>よくあるボトルネック</h4>
+        <div class="bottleneck-box">会話の重さです。自分語りが長い、質問攻めになる、すぐ正論・解決策を言う、沈黙を怖がりすぎる、相手が引いているのに追ってしまう。「悪い人ではないけど、話していて疲れる」と感じられやすい状態です。</div>
+
+        <h4>やらなくていい努力</h4>
+        <p>恋愛の駆け引き、強い口説き、告白、長文LINE、深い自己開示を頑張る段階ではありません。安全ライン未満で恋愛感を出すと、重さや圧として受け取られやすいです。</p>
+
+        <h4>まず1週間やる練習</h4>
+        <ul>
+          <li>自分の話は30秒以内に収める</li>
+          <li>質問だけでなく、自分の感想を1つ挟む</li>
+          <li>正論や解決策をすぐ出さない</li>
+          <li>会話が温まったところで、自分から気持ちよく終える</li>
+          <li>反応が薄いときは追わない</li>
+        </ul>
+        <p>目的は、相手に「この人とは普通に話せる」と感じてもらうことです。</p>
+
+        <h4>有料診断で見るべきログ</h4>
+        <ul>
+          <li>実際の会話ログ・LINEのやり取り</li>
+          <li>自分の話の長さ／質問と自己開示のバランス</li>
+          <li>会話が切れるポイント／誘う前の関係性</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="phase" id="phase-3">
+      <summary>
+        <span class="ph-num">3</span>
+        <span class="ph-title">男としての候補ライン未満</span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="phase-body">
+        <h4>あなたの暫定フェーズ</h4>
+        <p>女性と普通に話せる。嫌われてはいない。でも恋愛にならない。二人で会う流れにならない、会えても次につながらない。「いい人」「話しやすい人」で止まりやすい状態です。</p>
+
+        <h4>よくあるボトルネック</h4>
+        <div class="bottleneck-box">無害化です。なんでも相手に合わせる、自分の提案がない、目線・声・姿勢・間が弱い、冗談や軽いからかいがない。女性側からは「人としてはいいけど、男としては見られない」「ドキドキしない」となりやすいです。</div>
+
+        <h4>やらなくていい努力</h4>
+        <p>さらに優しくする、さらに誠実アピールする、相手の機嫌を取り続ける、告白で一発逆転を狙う、という努力はズレやすいです。</p>
+
+        <h4>まず1週間やる練習</h4>
+        <ul>
+          <li>小さな提案をする（「駅前のカフェで30分だけ」「土曜の夕方あたり」「合わなければすぐ解散でOK」）</li>
+          <li>身体性の改善（姿勢・声・目線・歩き方・服・髪型。特に髪型と服は即効性が高い）</li>
+          <li>会話に軽さを入れる（媚びずに自分も楽しむ、少し茶化す。下ネタや圧の強い口説きは不要）</li>
+        </ul>
+        <p>目的は、相手に「この人は安全だけど、ただの無害な人ではない」と感じてもらうことです。</p>
+
+        <h4>有料診断で見るべきログ</h4>
+        <ul>
+          <li>誘い方の文章／誘ったときの相手の反応</li>
+          <li>二人で会う前後の会話ログ・初回デートの流れ</li>
+          <li>服装・髪型・写真／声・姿勢・目線・間／次につながらない原因</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="phase" id="phase-4">
+      <summary>
+        <span class="ph-num">4</span>
+        <span class="ph-title">長期伴侶ライン未満</span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="phase-body">
+        <h4>あなたの暫定フェーズ</h4>
+        <p>女性と二人で会える。恋愛関係や性的関係に進むこともある。しかし付き合うところで崩れる、または付き合っても継続しない。信頼・安定・生活力・感情コントロールで問題が出やすい状態です。</p>
+
+        <h4>よくあるボトルネック</h4>
+        <div class="bottleneck-box">関係運営の不安定さです。返信が遅いだけで不安になる、嫉妬で詰める、約束や時間を守れない、生活・仕事・お金・健康の運用が不安定。短期的に魅力があっても、「この男を人生に入れて大丈夫か」が見られています。</div>
+
+        <h4>やらなくていい努力</h4>
+        <p>さらに刺激を増やす、さらに口説く、相手をコントロールする、という方向は危険です。必要なのは刺激ではなく、信頼・安定・言行一致です。</p>
+
+        <h4>まず1週間やる練習</h4>
+        <ul>
+          <li>小さな約束を確実に守る</li>
+          <li>不安を相手にぶつける前に一度止める（返信が遅い、反応が薄いときに即追撃しない）</li>
+          <li>生活の最低運用を整える（睡眠・食事・部屋・お金・仕事・健康）</li>
+        </ul>
+        <p>目的は、相手の人生システムが「この男を中に入れても安全で、むしろ良くなる」と判断することです。</p>
+
+        <h4>有料診断で見るべきログ</h4>
+        <ul>
+          <li>関係が崩れた場面／返信・LINEのやり取り／約束や予定調整のログ</li>
+          <li>不安になったときの行動／相手から言われた不満</li>
+          <li>生活・仕事・金銭・健康の状態／衝突時の会話ログ</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 最後に ============ -->
+  <section class="closing">
+    <h2 class="section-title"><span class="tag">CLOSING NOTE</span>最後に</h2>
+    <p>この診断は、あなたを否定するためのものではありません。目的は、努力の順番を間違えないことです。</p>
+    <ul class="order-list">
+      <li>拒絶ライン未満なのに、口説き方を学ぶ。</li>
+      <li>安全ライン未満なのに、恋愛テクニックを使う。</li>
+      <li>男として見られていないのに、誠実さや告白で押す。</li>
+      <li>長期伴侶として不安定なのに、将来を語る。</li>
+    </ul>
+    <p>こうした努力はズレやすいです。重要なのは、自分が今どのラインで落ちているのかを見て、正しい順番で改善することです。これは暫定診断であり、正確な判定には実際の会話ログ・誘い方・相手の反応・プロフィール・外見・接触導線を見る必要があります。</p>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <div class="cta-slip">
+    <h3>あなたの事例で、フェーズを確定させたい方へ</h3>
+    <p>このページの判定は、回答パターンからの一般的な推定にとどまります。実際の会話ログ・誘い方・相手の反応をもとに、あなた固有のズレを特定し、7日〜14日の改善課題まで含めてお伝えする個別診断をご用意しています。</p>
+    <!-- TODO: 下記hrefを有料個別診断の申込ページURLに差し替えてください -->
+    <a class="cta-button" href="https://example.com/diagnosis-pro" target="_blank" rel="noopener">個別診断について見る →</a>
+  </div>
+
+  <footer class="fineprint">
+    本ページは登録者限定の共有ページです。第三者への転載・共有はご遠慮ください。
+  </footer>
+
+</div>
+
+<script>
+  function openAndScroll(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.open = true;
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  // ページ読み込み時にハッシュ指定があれば該当フェーズを開く
+  window.addEventListener('DOMContentLoaded', function(){
+    var hash = window.location.hash.replace('#','');
+    if(hash) openAndScroll(hash);
+  });
+</script>
 </body>
 </html>
